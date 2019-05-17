@@ -1,5 +1,6 @@
 package clases;
 
+<<<<<<< HEAD
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -16,6 +17,15 @@ public class BDController {
     private PreparedStatement consultaCandidatosPorNac;
     private PreparedStatement consultaCandidatosPorEur;
 
+=======
+import javax.xml.crypto.Data;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class BDController {
+    private Connection miConexion;
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
 
     public BDController() {
         super();
@@ -27,11 +37,16 @@ public class BDController {
                 e.printStackTrace();
             }
             //Configuro la conexion con la BBDD
+<<<<<<< HEAD
             this.miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/partido", "root", "");
+=======
+            this.miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/PARTIDO_HUMANO", "root", "");
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println("Error en constructor BDController " + e.getMessage());
         }
+<<<<<<< HEAD
         String sqlconsultaPrepExisteCandidato = "SELECT * FROM candidatos WHERE cod_candidato=?";
         String sqlconsultaPrepExisteEvento = "SELECT * FROM eventos WHERE cod_evento=?";
         String sqlconsultaPrepExisteNoticia = "SELECT * FROM noticias WHERE cod_noticia=?";
@@ -469,6 +484,8 @@ public class BDController {
             // TODO Auto-generated catch block
             System.out.println("Error en borrarCandidatoBD del BDController" + e.getMessage());
         }
+=======
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
     }
 
     public ArrayList<Asistentes> dameAsistentes() {
@@ -509,15 +526,22 @@ public class BDController {
         ArrayList<Candidato> candidatos = new ArrayList<Candidato>();
         try {
             Statement miStatement = this.miConexion.createStatement();
+<<<<<<< HEAD
             ResultSet rs = miStatement.executeQuery("SELECT * FROM candidatos order by cod_candidato asc");
 
             while (rs.next()) {
                 candidatos.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+=======
+            ResultSet rs = miStatement.executeQuery("SELECT * FROM campanna order by cod_campanna asc");
+            while (rs.next()) {
+                candidatos.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
             }
             miStatement.close();
             rs.close();
 
         } catch (SQLException e) {
+<<<<<<< HEAD
             System.out.println("Error en dameCandidatos******************** de BDController " + e.getMessage());
         }
         return candidatos;
@@ -635,13 +659,22 @@ public class BDController {
         }
         return candidato;
     }
+=======
+            System.out.println("Error en dameCandidatos de BDController " + e.getMessage());
+        }
+        return candidatos;
+    }
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
 
     public ArrayList<Candidatura> dameCandidatura() {
         ArrayList<Candidatura> candidaturas = new ArrayList<Candidatura>();
         try {
             Statement miStatement = this.miConexion.createStatement();
             ResultSet rs = miStatement.executeQuery("SELECT * FROM candidaturas order by cod_candidato asc");
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
             while (rs.next()) {
                 candidaturas.add(new Candidatura(rs.getInt(1), rs.getInt(2), rs.getString(3),rs.getInt(5)));
             }
@@ -660,7 +693,11 @@ public class BDController {
             Statement miStatement = this.miConexion.createStatement();
             ResultSet rs = miStatement.executeQuery("SELECT * FROM eventos order by cod_evento asc");
             while (rs.next()) {
+<<<<<<< HEAD
                 eventos.add(new Evento(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8)));
+=======
+                eventos.add(new Evento(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDate(4),rs.getTime(5),rs.getString(6),rs.getInt(7),rs.getString(8)));
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
             }
             miStatement.close();
             rs.close();
@@ -743,10 +780,16 @@ public class BDController {
         ArrayList<Evento> eventos = new ArrayList<Evento>();
         try {
             Statement miStatement = this.miConexion.createStatement();
+<<<<<<< HEAD
             ResultSet rs = miStatement.executeQuery("SELECT * FROM eventos order by cod_evento desc limit 5");
             while (rs.next()) {
                 System.out.println("");
                 eventos.add(new Evento(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8)));
+=======
+            ResultSet rs = miStatement.executeQuery("SELECT * FROM eventos WHERE DATE(dia)>CURDATE() order by dia limit 5;");
+            while (rs.next()) {
+                eventos.add(new Evento(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDate(4),rs.getTime(5),rs.getString(6),rs.getInt(7),rs.getString(8)));
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
             }
             miStatement.close();
             rs.close();
@@ -771,5 +814,8 @@ public class BDController {
         }
         return programas;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
 }

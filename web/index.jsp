@@ -131,10 +131,17 @@ pageEncoding="utf-8"%>
                                     <li><a href="index.jsp">Inicio</a></li>
                                     <li><a href="#">Elecciones</a>
                                         <ul class="dropdown">
+<<<<<<< HEAD
                                             <li><a href="eleccionesNacionales.jsp">Nacionales</a></li>
                                             <li><a href="eleccionesAutonomicas.jsp">Autonómicas</a></li>
                                             <li><a href="eleccionesMunicipales.jsp">Municipales</a></li>
                                             <li><a href="eleccionesEuropeas.jsp">Europeas</a></li>
+=======
+                                            <li><a href="elecciones/nacionales.jsp">Nacionales</a></li>
+                                            <li><a href="elecciones/autonomicas.jsp">Autonómicas</a></li>
+                                            <li><a href="elecciones/municipales.jsp">Municipales</a></li>
+                                            <li><a href="elecciones/europeas.jsp">Europeas</a></li>
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
                                         </ul>
                                     </li>
                                     <li><a href="proximos-eventos.jsp">Próximos eventos</a></li>
@@ -166,12 +173,15 @@ pageEncoding="utf-8"%>
 	  <div class="carousel-cell"><img class="imgs-banner" src="img/bg-img/b1.jpg"><div class="container-button-banner"><div class="title-new-banner"><%=noticias.get(i).getTitulo()%></div><div class="button-banner"><a href="" class="link-button-banner">Ver Noticia</a></div></div></div>
 	    <%}%>
     </div>
+<<<<<<< HEAD
     <div class="container">
         <div class="jumbotron mt-5">
             <h1 class="display-4">Por españa!</h1>
             <p class="lead">DESCRIPCION</p>
         </div>
     </div>
+=======
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
     <!-- ##### Blog Wrapper Start ##### -->
         <div class="blog-wrapper section-padding-100 clearfix">
             <div class="container">
@@ -182,7 +192,11 @@ pageEncoding="utf-8"%>
                             <img src="img/blog-img/1.jpg" alt="">
                             <!-- Catagory Title -->
                             <div class="catagory-title">
+<<<<<<< HEAD
                                 <a href="eleccionesEuropeas.jsp">Elecciones Europeas</a>
+=======
+                                <a href="#">Elecciones Europeas</a>
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
                             </div>
                         </div>
                     </div>
@@ -202,7 +216,11 @@ pageEncoding="utf-8"%>
                             <img src="img/blog-img/2.jpg" alt="">
                             <!-- Catagory Title -->
                             <div class="catagory-title">
+<<<<<<< HEAD
                                 <a href="eleccionesAutonomicas.jsp">Elecciones Autonomicas</a>
+=======
+                                <a href="#">Elecciones Autonomicas</a>
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
                             </div>
                         </div>
                     </div>
@@ -211,7 +229,11 @@ pageEncoding="utf-8"%>
                             <img src="img/blog-img/2.jpg" alt="">
                             <!-- Catagory Title -->
                             <div class="catagory-title">
+<<<<<<< HEAD
                                 <a href="eleccionesMunicipales.jsp">Elecciones Municipales</a>
+=======
+                                <a href="#">Elecciones Municipales</a>
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
                             </div>
                         </div>
                     </div>
@@ -255,6 +277,10 @@ pageEncoding="utf-8"%>
         </div>
     </div>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center">
         <div class="container">
@@ -296,6 +322,11 @@ pageEncoding="utf-8"%>
         Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.centronelson.org/" target="_blank">Ivan, Jaime & Alejandro </a>
 
     </footer>
+<<<<<<< HEAD
+=======
+    <!-- ##### Footer Area End ##### -->
+
+>>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
