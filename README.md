@@ -1,2 +1,0 @@
-# PHE
-Proyecto compartido politico

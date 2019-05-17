@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< HEAD
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/web/admin-manager/add-evento.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/web/admin-manager/borrarcandidato.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/web/admin-manager/index.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/web/proximosEventos.jsp" charset="windows-1252" />
   </component>
-=======
-  <component name="Encoding" addBOMForNewFiles="with NO BOM" />
->>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
 </project>

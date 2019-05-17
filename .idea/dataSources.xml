@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-<<<<<<< HEAD
     <data-source source="LOCAL" name="ph@localhost" uuid="12169c29-d48b-44fb-8f75-318fb003ae49">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
@@ -10,25 +9,12 @@
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="CONVERT_TO_NULL" />
-=======
-    <data-source source="LOCAL" name="PARTIDO_HUMANO@localhost" uuid="7309deae-dc3f-43b0-9002-4ce1085c8bac">
-      <driver-ref>mysql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/PARTIDO_HUMANO</jdbc-url>
-      <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
->>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
         <property name="tinyInt1isBit" value="false" />
         <property name="characterEncoding" value="utf8" />
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
       </driver-properties>
-<<<<<<< HEAD
       <time-zone>Europe/Madrid</time-zone>
-=======
->>>>>>> 7116f71dee7990ab7e4d28706a9798af249917b3
     </data-source>
   </component>
 </project>
