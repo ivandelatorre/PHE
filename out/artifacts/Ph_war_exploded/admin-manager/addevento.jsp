@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<%@page import="java.text.DateFormat"%>
-<html lang="en">
 <%@page import="clases.*"%>
 <%@page import="clases.Evento"%>
 <%@page import="java.util.*"%>
@@ -14,7 +11,8 @@
 
 <%@page import="java.time.LocalTime"%>
 <%@page import="java.time.*"%>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +53,7 @@
 
 			<!-- LOGO -->
 			<div class="headerbar-left">
-				<a href="index.jsp" class="logo"> <span>Admin Site</span></a>
+				<a href="index.jsp" class="logo"> <span>Administracion</span></a>
 			</div>
 
 			<nav class="navbar-custom">
@@ -256,11 +254,12 @@
 							<ul class="list-unstyled">
 								<li><a href="busqueda-candidato.jsp">Candidatos</a></li>
 								<li><a href="busqueda-eventos.jsp">Eventos</a></li>
+								<li><a href="busqueda-voluntarios.jsp">Voluntarios</a></li>
 							</ul>
 						</li>
 
 						<li class="submenu">
-							<a href="#"><i class="material-icons">add</i> <span> Añadir </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="material-icons">add</i> <span> Insertar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="add-candidato.jsp">Candidato</a></li>
 								<li><a href="add-evento.jsp ">Evento</a></li>
@@ -271,7 +270,7 @@
 							<a href="#"><i class="material-icons">delete</i> <span> Eliminar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="borrar-candidato.jsp">Candidato</a></li>
-								<li><a>Evento</a></li>
+								<li><a href="borrar-evento.jsp">Evento</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -297,10 +296,10 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="breadcrumb-holder">
-								<h1 class="main-title float-left">Borrar Eventos</h1>
+								<h1 class="main-title float-left">Insertar Evento</h1>
 								<ol class="breadcrumb float-right">
 									<li class="breadcrumb-item">Inicio</li>
-									<li class="breadcrumb-item active">Borrar Eventos</li>
+									<li class="breadcrumb-item active">Insertar Evento</li>
 								</ol>
 								<div class="clearfix"></div>
 							</div>
@@ -308,8 +307,8 @@
 					</div>
 					<!-- end row -->
 					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="margin: auto;height:200px">
-							<h3>Has añadido el evento:</h3>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="margin: auto;height:400px">
+							<h3>Has insertado el evento:</h3>
 							
 							<%
 							BDController controladorbd=new BDController();
@@ -328,21 +327,18 @@
 							String tipo=request.getParameter("tipo");
 							String descripcion=request.getParameter("descripcion");
 							
-// 							Calendar calendario = GregorianCalendar.getInstance();
-// 							Date fecha = calendario.getTime();
-// 							System.out.println(fecha);
-// 							SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
-// 							Date diata=formatoDeFecha.parse(dia);
-							
-// 							DateFormat formatter = new SimpleDateFormat("HH:mm");
-// 							java.sql.Time time = new java.sql.Time(formatter.parse(hora).getTime());
+
 							
 							Evento e=new Evento(cod,descripcion,lugar,dia,hora,nombre,2,lugar);
-// 							Evento eve=new Evento(cod,descripcion,lugar,diata,time,nombre,1,lugar);
+					
 							controladorbd.insertarEvento(e);
-							ArrayList<Evento> eventos=controladorbd.dameEventos();
+							ArrayList<Evento> eventos=controladorbd.dameEvento(cod); 
 							%>
-									
+							<div class="card mb-3">
+								<div class="card-header">
+									<h3><i class="fa fa-check-square-o"></i>Evento insertado:</h3>
+								</div>
+							<div class="card-body">
 							<div class="table-responsive">
 										<table id="example1" class="table table-bordered table-hover display">
 											<thead>
@@ -371,6 +367,7 @@
 											</tbody>
 										</table>
 									</div>
+							</div>
 
 						</div>
 					</div>
@@ -385,8 +382,6 @@
 				Powered by <a target="_blank" href=""><b>Admin</b></a>
 			</span>
 		</footer>
-			</div>
-		</div>
 
 	</div>
 	<!-- END main -->

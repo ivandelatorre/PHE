@@ -4,6 +4,7 @@ public class Programa {
     private int cod_punto;
     private String descripcion;
     private int cod_campanna;
+    private String titulo;
 
     public Programa() {
     }
@@ -12,6 +13,21 @@ public class Programa {
         this.cod_punto = cod_punto;
         this.descripcion = descripcion;
         this.cod_campanna = cod_campanna;
+    }
+
+    public Programa(int cod_punto, String descripcion, int cod_campanna, String titulo) {
+        this.cod_punto = cod_punto;
+        this.descripcion = descripcion;
+        this.cod_campanna = cod_campanna;
+        this.titulo = titulo;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public int getCod_punto() {

@@ -43,7 +43,7 @@
 
 			<!-- LOGO -->
 			<div class="headerbar-left">
-				<a href="index.jsp" class="logo"> <span>Admin Site</span></a>
+				<a href="index.jsp" class="logo"> <span>Administracion</span></a>
 			</div>
 
 			<nav class="navbar-custom">
@@ -244,11 +244,12 @@
 							<ul class="list-unstyled">
 								<li><a href="busqueda-candidato.jsp">Candidatos</a></li>
 								<li><a href="busqueda-eventos.jsp">Eventos</a></li>
+								<li><a href="busqueda-voluntarios.jsp">Voluntarios</a></li>
 							</ul>
 						</li>
 
 						<li class="submenu">
-							<a href="#"><i class="material-icons">add</i> <span> Añadir </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="material-icons">add</i> <span> Insertar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="add-candidato.jsp">Candidato</a></li>
 								<li><a href="add-evento.jsp ">Evento</a></li>
@@ -259,7 +260,7 @@
 							<a href="#"><i class="material-icons">delete</i> <span> Eliminar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="borrar-candidato.jsp">Candidato</a></li>
-								<li><a>Evento</a></li>
+								<li><a href="borrar-evento.jsp">Evento</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -296,8 +297,8 @@
 					</div>
 					<!-- end row -->
 					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="margin: auto;height:200px">
-							<h3>El evento borrado es:</h3>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="margin: auto;height:400px">
+					
 							
 							<%
 							int cod=Integer.parseInt(request.getParameter("codigo"));
@@ -306,6 +307,11 @@
 							controladorbd.borrarEvento(cod);
 							
 							%>
+							<div class="card mb-3">
+								<div class="card-header">
+									<h3><i class="fa fa-check-square-o"></i>Evento Borrado:</h3>
+								</div>
+							<div class="card-body">
 									
 							<div class="table-responsive">
 										<table id="example1" class="table table-bordered table-hover display">
@@ -329,13 +335,14 @@
 													<th><%=cam.getDia() %></th>
 													<th><%=cam.getHora()%></th>
 												</tr>
-												<% }%> 
-												
-												
+												<% }%>
+
+							</div>
 											</tbody>
 										</table>
 									</div>
-
+								</div>
+								</div>
 						</div>
 					</div>
 				</div>
@@ -374,6 +381,6 @@
 	<!-- BEGIN Java Script for this page -->
 
 	<!-- END Java Script for this page -->
-
+	</div>
 </body>
 </html>

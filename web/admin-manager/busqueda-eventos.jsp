@@ -8,7 +8,7 @@
 	<%@ page import="clases.*" %>
 	<%@ page import="java.util.*" %>
 
-	<title>Admin Site | BÃºsqueda de Candidatos</title>
+	<title>Admin Site | Busqueda de Candidatos</title>
 	<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
 	<meta name="author" content="Pike Web Development - https://www.pikephp.com">
 
@@ -50,7 +50,7 @@
 
 			<!-- LOGO -->
 			<div class="headerbar-left">
-				<a href="index.jsp" class="logo"><span>Admin Site</span></a>
+				<a href="index.jsp" class="logo"><span>Administracion</span></a>
 			</div>
 
 			<nav class="navbar-custom">
@@ -251,11 +251,12 @@
 							<ul class="list-unstyled">
 								<li><a href="busqueda-candidato.jsp">Candidatos</a></li>
 								<li><a href="busqueda-eventos.jsp">Eventos</a></li>
+								<li><a href="busqueda-voluntarios.jsp">Voluntarios</a></li>
 							</ul>
 						</li>
 
 						<li class="submenu">
-							<a href="#"><i class="material-icons">add</i> <span> Añadir </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="material-icons">add</i> <span> Insertar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="add-candidato.jsp">Candidato</a></li>
 								<li><a href="add-evento.jsp ">Evento</a></li>
@@ -266,7 +267,7 @@
 							<a href="#"><i class="material-icons">delete</i> <span> Eliminar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="borrar-candidato.jsp">Candidato</a></li>
-								<li><a href="añadir-evento.jsp ">Evento</a></li>
+								<li><a href="borrar-evento.jsp ">Evento</a></li>
 							</ul>
 						</li>
 

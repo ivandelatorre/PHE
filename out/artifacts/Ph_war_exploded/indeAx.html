@@ -1,0 +1,300 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ page import="clases.*" %>
+<%@ page import="java.util.*" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>PHE | Partido Humano Español</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+</head>
+
+<body>
+<%
+    BDController controladorBD = new BDController();
+    ArrayList<Noticia> noticias = controladorBD.dame4NoticiasCampanna();
+    ArrayList<Evento> eventos = controladorBD.dame5proximosEventos();
+%>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preload-content">
+            <div id="original-load"></div>
+        </div>
+    </div>
+
+
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Breaking News Area -->
+                    <div class="col-12 col-sm-8">
+                        <div class="breaking-news-area">
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    <li><a href="#">Por españa!</a></li>
+                                    <li><a href="#"><script>document.write(new Date().getDate() + " - " + new Date().getMonth() + " - " + new Date().getFullYear());</script> </a></li>
+                                    <li><a href="#">Elecciones 2019!</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Top Social Area -->
+                    <div class="col-12 col-sm-4">
+                        <div class="top-social-area">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo Area -->
+        <div class="logo-area text-center">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <a href="index.jsp" class="original-logo"><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav Area -->
+        <div class="original-nav-area" id="stickyNav">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between">
+
+
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu" id="originalNav">
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a>Inicio</a></li>
+                                    <li><a>Elecciones</a>
+                                        <ul class="dropdown">
+                                            <li><a href="eleccionesNacionales.jsp">Nacionales</a></li>
+                                            <li><a href="eleccionesAutonomicas.jsp">Autonómicas</a></li>
+                                            <li><a href="eleccionesMunicipales.jsp">Municipales</a></li>
+                                            <li><a href="eleccionesEuropeas.jsp">Europeas</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="proximosEventos.jsp">Próximos eventos</a></li>
+                                    <li><a href="participa.jsp">Participa</a></li>
+
+                                </ul>
+
+                                <!-- Search Form  -->
+                                <div id="search-wrapper">
+                                    <form action="#">
+                                        <input type="text" id="search" placeholder="Search something...">
+                                        <div id="close-icon"></div>
+                                        <input class="d-none" type="submit" value="">
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <div class="main-carousel">
+        <%for (int i = 0; i < noticias.size(); i++){%>
+	  <div class="carousel-cell"><img class="imgs-banner" src="img/bg-img/b1.jpg"><div class="container-button-banner"><div class="title-new-banner"><%=noticias.get(i).getTitulo()%></div><div class="button-banner"><a href="" class="link-button-banner">Ver Noticia</a></div></div></div>
+	    <%}%>
+    </div>
+    <div class="container">
+        <div class="jumbotron mt-5">
+            <h1 class="display-4">Por españa!</h1>
+            <p class="lead">El Partido Humano Español (PHE) es un partido político liberal conservador español situado entre el centroderecha y la derecha política. Fue fundado en enero de 1989; si bien, en realidad, fue refundado, sustituyendo a la antigua Alianza Popular (AP).13​ Desde 2011 y hasta 2018, fue el partido que ocupó el Gobierno de España, bajo el mandato de Mariano Rajoy hasta que fue desplazado tras la aprobación de una moción de censura en su contra.
+
+                Definido en sus estatutos como de «centro reformista» e inspirado en los valores del humanismo cristiano14​ cuenta, según sus propias estimaciones, con más de 865 000 afiliados9​ divididos entre militantes (que pagan cuotas) y simpatizantes (que no las pagan), aunque esta afirmación ha sido motivo de controversia: un análisis independiente sitúa el número de afiliados en unos 100 000.11​
+
+                Es uno de los partidos mayoritarios de España, ganando sucesivamente las elecciones generales celebradas en el período 2011-2016. Actualmente, tras las elecciones generales de 2019, el PP tiene 66 escaños en el Congreso de los Diputados y 55 en el Senadonota 1​. Además, gobierna en seis comunidades autónomas, así como en Ceuta y Melilla. Es, con las presidencias de José María Aznar y Mariano Rajoy, la segunda formación que más años ha gobernado el país desde el restablecimiento de la democracia, por detrás del PSOE.</p>
+        </div>
+    </div>
+    <!-- ##### Blog Wrapper Start ##### -->
+        <div class="blog-wrapper section-padding-100 clearfix">
+            <div class="container">
+                <div class="row align-items-end">
+                    <!-- Single Blog Area -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="single-catagory-area clearfix mb-100">
+                            <img src="img/blog-img/1.jpg" alt="">
+                            <!-- Catagory Title -->
+                            <div class="catagory-title">
+                                <a href="eleccionesEuropeas.jsp">Elecciones Europeas</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Blog Area -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="single-catagory-area clearfix mb-100">
+                            <img src="img/blog-img/1.jpg" alt="">
+                            <!-- Catagory Title -->
+                            <div class="catagory-title">
+                                <a href="eleccionesNacionales.jsp">Elecciones Nacionales</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Blog Area -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="single-catagory-area clearfix mb-100">
+                            <img src="img/blog-img/2.jpg" alt="">
+                            <!-- Catagory Title -->
+                            <div class="catagory-title">
+                                <a href="eleccionesAutonomicas.jsp">Elecciones Autonomicas</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="single-catagory-area clearfix mb-100">
+                            <img src="img/blog-img/2.jpg" alt="">
+                            <!-- Catagory Title -->
+                            <div class="catagory-title">
+                                <a href="eleccionesMunicipales.jsp">Elecciones Municipales</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-9">
+                    <!-- Single Blog Area  -->
+                    <%for (int i = 0; i < eventos.size(); i++){%>
+                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1000ms">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-md-6">
+                                <div class="single-blog-thumbnail">
+                                    <img src="img/blog-img/5.jpg" alt="">
+                                    <div class="post-date">
+                                        <a href="#"><%=eventos.get(i).getDia()%></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <!-- Blog Content -->
+                                <div class="single-blog-content">
+                                    <div class="line"></div>
+                                    <h4><a href="#" class="post-headline"><%=eventos.get(i).getNombre()%></a></h4>
+                                    <p><%=eventos.get(i).getDescripcion()%></p>
+                                    <div class="post-meta">
+                                        <p>En <a href="#"><%=eventos.get(i).getMunicipio()%></a></p>
+                                        <p><%=eventos.get(i).getHora()%></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                    <!-- Load More -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                   
+                    <!-- Footer Nav Area -->
+                    <div class="classy-nav-container breakpoint-off">
+                        <!-- Classy Menu -->
+                        <nav class="classy-navbar justify-content-center">
+
+                            <!-- Navbar Toggler -->
+                            <div class="classy-navbar-toggler">
+                                <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            </div>
+
+                            <!-- Menu -->
+                            <div class="classy-menu">
+
+                                <!-- close btn -->
+                                <div class="classycloseIcon">
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                                </div>
+
+                            </div>
+                        </nav>
+                    </div>
+                    
+                    <!-- Footer Social Area -->
+                    <div class="footer-social-area mt-30">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados | <a href="https://www.centronelson.org/" target="_blank">Ivan, Jaime & Alejandro </a>
+
+    </footer>
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    
+	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
+
+</body>
+
+</html>

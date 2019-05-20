@@ -1,8 +1,5 @@
 package clases;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class Evento {
 	private int cod_evento;
     private String descripcion;
@@ -13,7 +10,8 @@ public class Evento {
     private int cod_campanna;
     private String municipio;
     private String ambito;
-	public Evento(int cod_evento, String descripcion, String ubicacion, String dia, String hora, String nombre,
+
+    public Evento(int cod_evento, String descripcion, String ubicacion, String dia, String hora, String nombre,
 				  int cod_campanna, String municipio) {
 		super();
 		this.cod_evento = cod_evento;

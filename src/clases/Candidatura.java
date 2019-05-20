@@ -3,10 +3,17 @@ package clases;
 public class Candidatura {
     private int cod_candidato;
     private int cod_campanna;
-    private boolean cabeza_lista;
+    private String cabeza_lista;
     private int posicion;
 
-    public Candidatura(int anInt, int rsInt, String string, int i) {
+    public Candidatura(int cod_candidato, int cod_campanna, String cabeza_lista, int posicion) {
+        this.cod_candidato = cod_candidato;
+        this.cod_campanna = cod_campanna;
+        this.cabeza_lista = cabeza_lista;
+        this.posicion = posicion;
+    }
+
+    public Candidatura() {
     }
 
     public int getCod_candidato() {
@@ -25,11 +32,11 @@ public class Candidatura {
         this.cod_campanna = cod_campanna;
     }
 
-    public boolean isCabeza_lista() {
+    public String getCabeza_lista() {
         return cabeza_lista;
     }
 
-    public void setCabeza_lista(boolean cabeza_lista) {
+    public void setCabeza_lista(String cabeza_lista) {
         this.cabeza_lista = cabeza_lista;
     }
 

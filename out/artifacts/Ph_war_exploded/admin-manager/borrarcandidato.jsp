@@ -1,13 +1,31 @@
 <!DOCTYPE html>
+<%@page import="clases.Candidatura"%>
 <%@page import="clases.Candidato"%>
+
+<%@page import="java.text.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.*"%>
+<%@page import="org.eclipse.jdt.internal.compiler.ast.ForeachStatement"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="clases.BDController"%>
+<%@ page import="clases.*" %>
+<%@ page import="java.io.*,java.util.*, javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+<%@ page import="org.apache.commons.fileupload.*" %>
+<%@ page import="org.apache.commons.fileupload.disk.*" %>
+<%@ page import="org.apache.commons.fileupload.servlet.*" %>
+<%@ page import="org.apache.commons.io.output.*" %>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Admin Site | Añadir Candidatos</title>
+	<title>Admin Site | Borrar Candidato</title>
 	<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
 	<meta name="author" content="Pike Web Development - https://www.pikephp.com">
 
@@ -43,7 +61,7 @@
 
 			<!-- LOGO -->
 			<div class="headerbar-left">
-				<a href="index.jsp" class="logo"> <span>Admin Site</span></a>
+				<a href="index.jsp" class="logo"> <span>Administracion</span></a>
 			</div>
 
 			<nav class="navbar-custom">
@@ -244,6 +262,7 @@
 							<ul class="list-unstyled">
 								<li><a href="busqueda-candidato.jsp">Candidatos</a></li>
 								<li><a href="busqueda-eventos.jsp">Eventos</a></li>
+								<li><a href="busqueda-voluntarios.jsp">Voluntarios</a></li>
 							</ul>
 						</li>
 
@@ -258,7 +277,7 @@
 						<li class="submenu">
 							<a href="#"><i class="material-icons">delete</i> <span> Eliminar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
-								<li><a>Candidato</a></li>
+								<li><a href="borrar-candidato.jsp">Candidato</a></li>
 								<li><a href="borrar-evento.jsp">Evento</a></li>
 							</ul>
 						</li>
@@ -300,16 +319,28 @@
 					<!-- end row -->
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="margin: auto;height:400px">
-							<h3>El candidato borrado</h3>
+							
 							
 							<%
+							
 							int cod=Integer.parseInt(request.getParameter("codigo"));
 							BDController controladorbd=new BDController();
-							ArrayList<Candidato> candidatos=controladorbd.dameCandidato(cod); 
+
+							
+							Hashtable<String,Candidato> hca = new Hashtable<String,Candidato>();
+							hca=controladorbd.dameCandidat(cod);
+							Candidato candidatu= hca.get("1");
+							
 							controladorbd.borrarCandidato(cod);
 					
+							
+							
 							%>
-									
+								<div class="card mb-3">
+								<div class="card-header">
+									<h3><i class="fa fa-check-square-o"></i>Candidato Borrado:</h3>
+								</div>
+							<div class="card-body">
 							<div class="table-responsive">
 										<table id="example1" class="table table-bordered table-hover display">
 											<thead>
@@ -323,21 +354,23 @@
 												</tr>
 											</thead>
 											<tbody>
-												<% for(Candidato cam: candidatos){%>
+												
 											<tr>
-													<th><%=cam.getNombre() %></th>
-													<th><%=cam.getApellidos()%></th>
-													<th><%=cam.getMunicipio() %></th>
-													<th><%=cam.getProvincia()%></th>
-													<th><%=cam.getFecha_nac() %></th>
-													<th><%=cam.getLugar_nac()%></th>
+													<th><%=candidatu.getNombre() %></th>
+													<th><%=candidatu.getApellidos()%></th>
+													<th><%=candidatu.getMunicipio() %></th>
+													<th><%=candidatu.getProvincia()%></th>
+													<th><%=candidatu.getFecha_nac() %></th>
+													<th><%=candidatu.getLugar_nac()%></th>
 												</tr>
-												<% }%> 
+											
 												
 											</tbody>
 										</table>
 									</div>
+								
 
+							</div>
 						</div>
 					</div>
 				</div>

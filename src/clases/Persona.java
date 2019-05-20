@@ -1,7 +1,5 @@
 package clases;
 
-import java.sql.Date;
-
 public class Persona {
 	private int cod;
     private String nombre;
@@ -9,6 +7,12 @@ public class Persona {
     private String fecha_nac;
 
 	public Persona() {
+	}
+
+	public Persona(String nombre, String apellidos, String fecha_nac) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.fecha_nac = fecha_nac;
 	}
 
 	public Persona(int cod, String nombre, String apellidos, String fecha_nac) {

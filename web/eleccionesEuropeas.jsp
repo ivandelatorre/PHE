@@ -4,7 +4,7 @@
 <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-es">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>PHE | Partido Humano Español</title>
+    <title>PHE | Elecciones Europeas</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -31,8 +31,10 @@
 <body>
 <%
     BDController controladorBD = new BDController();
-    ArrayList<Programa> programas = controladorBD.dame10primerosPuntosPrograma();
+    ArrayList<Programa> programas = controladorBD.dame10primerosPuntosPrograma("europa");
     ArrayList<Candidato> candidatos = controladorBD.dameCandidatosPorEuropa();
+    Candidato candidatoCabeza = controladorBD.dameCabeza("europa");
+    int cont = 0;
 %>
     <!-- Preloader -->
     <div id="preloader">
@@ -53,11 +55,9 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Hello World!</a></li>
-                                    <li><a href="#">Hello Universe!</a></li>
-                                    <li><a href="#">Hello Original!</a></li>
-                                    <li><a href="#">Hello Earth!</a></li>
-                                    <li><a href="#">Hello Colorlib!</a></li>
+                                    <li><a href="#">Por españa!</a></li>
+                                    <li><a href="#"><script>document.write(new Date().getDate() + " - " + new Date().getMonth() + " - " + new Date().getFullYear());</script> </a></li>
+                                    <li><a href="#">Elecciones 2019!</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -65,9 +65,9 @@
                     <!-- Top Social Area -->
                     <div class="col-12 col-sm-4">
                         <div class="top-social-area">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -92,10 +92,7 @@
                     <!-- Classy Menu -->
                     <nav class="classy-navbar justify-content-between">
 
-                        <!-- Subscribe btn -->
-                        <div class="subscribe-btn">
-                            <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#subsModal">Subscribirse</a>
-                        </div>
+
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -113,17 +110,17 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index.jsp">Inicio</a></li>
-                                    <li><a href="#">Elecciones</a>
+                                    <li><a>Elecciones</a>
                                         <ul class="dropdown">
                                             <li><a href="eleccionesNacionales.jsp">Nacionales</a></li>
-                                            <li><a href="eleccionesAutonomicas.jsp">Autonómicas</a></li>
+                                            <li><a href="eleccionesAutonomicas.jsp">Autonomicas</a></li>
                                             <li><a href="eleccionesMunicipales.jsp">Municipales</a></li>
-                                            <li><a href="eleccionesEuropeas.jsp">Europeas</a></li>
+                                            <li><a>Europeas</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="proximos-eventos.jsp">Próximos eventos</a></li>
+                                    <li><a href="proximosEventos.jsp">Proximos eventos</a></li>
                                     <li><a href="participa.jsp">Participa</a></li>
-                                    <li><a href="contact.html">Contacto</a></li>
+
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -146,38 +143,10 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.jsp">Inicio</a></li>
-                <li class="breadcrumb-item">Elecciones europeas</li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">Elecciones europeas</a></li>
             </ol>
         </nav>
     </div>
-
-    <div class="container w-75">
-        <div id="accordion" role="tablist" aria-multiselectable="true">
-            <%for (int i = 0; i < programas.size(); i++){%>
-            <div class="card">
-                <div class="card-header" role="tab" id="headingOne">
-                    <div class="mb-0">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>" aria-expanded="false" aria-controls="collapse<%=i%>" class="collapsed">
-                            <i class="far fa-file-alt"></i>
-                            <h3><%=programas.get(i).getCod_punto()%></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                        </a>
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </div>
-                </div>
-
-                <div id="collapse<%=i%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=i%>" aria-expanded="false" style="">
-                    <div class="card-block">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-            <%}%>
-        </div>
-    </div>
-
-
-
 
     <section id="team" class="team-area">
         <div class="container">
@@ -192,46 +161,52 @@
             <div class="row team-items d-flex align-content-center justify-content-center">
                 <div class="col-md-4 single-item">
                     <div class="item">
+                        <p class="text-center font-weight-bold">Cabeza</p>
                         <div class="thumb">
-                            <img class="img-fluid" src="https://i.ibb.co/JC4skS0/team-animate.jpg" alt="Thumb">
+                            <img class="img-fluid" src="img/imagenesPoliticos/8.jpg" alt="Thumb">
                             <div class="overlay">
-                                <h4>Iván Jimenez Ortiz</h4>
+                                <h4><%=candidatoCabeza.getNombre()%></h4>
                                 <p>
-                                    Lorem Ipsum is simp ly dummy text of the printing and typesetting industry.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info">
-                        <h4>Iván Jiménez Ortiz</h4>
-                        <span>Ingeniero aeronáutico</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row team-items d-flex align-content-center justify-content-center">
-                <%for (int i = 0; i < candidatos.size();i++){%>
-                <div class="col-md-4 single-item subCandidato">
-                    <div class="item">
-                        <div class="thumb">
-                            <img class="img-fluid" src="https://i.ibb.co/JC4skS0/team-animate.jpg" alt="Thumb">
-                            <div class="overlay">
-                                <h4><%=candidatos.get(i).getNombre()%></h4>
-                                <p>
-                                    Lorem Ipsum is simp ly dummy text of the printing and typesetting industry.
+                                    <%=candidatoCabeza.getDescripcion()%>
                                 </p>
                                 <div class="social">
                                     <ul>
                                         <li class="twitter">
                                             <a href="https://twitter.com/?lang=es"><i class="fab fa-twitter"></i></a>
                                         </li>
-                                        <li class="pinterest">
-                                            <a href="https://www.pinterest.es/"><i class="fab fa-pinterest"></i></a>
-                                        </li>
                                         <li class="instagram">
                                             <a href="https://www.instagram.com/?hl=es"><i class="fab fa-instagram"></i></a>
                                         </li>
-                                        <li class="vimeo">
-                                            <a href="https://vimeo.com/es"><i class="fab fa-vimeo-v"></i></a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h4><%=candidatoCabeza.getNombre()%></h4>
+                        <span><%=candidatoCabeza.getProvincia()%></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row team-items d-flex align-content-center justify-content-center">
+                <%for (int i = 0; i < candidatos.size();i++){%>
+                <%cont++; if (cont <= 32 ){System.out.println(cont);}else{cont = 1;}%>
+                <div class="col-md-4 single-item subCandidato">
+                    <div class="item">
+                        <div class="thumb">
+                            <img class="img-fluid" src="img/imagenesPoliticos/<%=cont%>.jpg" alt="Thumb">
+                            <div class="overlay">
+                                <h4><%=candidatos.get(i).getNombre()%></h4>
+                                <p>
+                                    <%=candidatos.get(i).getDescripcion()%>
+                                </p>
+                                <div class="social">
+                                    <ul>
+                                        <li class="twitter">
+                                            <a href="https://twitter.com/?lang=es"><i class="fab fa-twitter"></i></a>
+                                        </li>
+                                        <li class="instagram">
+                                            <a href="https://www.instagram.com/?hl=es"><i class="fab fa-instagram"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -254,7 +229,37 @@
     </section>
 
     <br>
+<div class="container w-75">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="site-heading text-center">
+                <h2>Nuestras <span>Medidas</span></h2>
+                <h4>Conoce nuestras medidas</h4>
+            </div>
+        </div>
+    </div>
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+        <%for (int i = 0; i < programas.size(); i++){%>
+        <div class="card">
+            <div class="card-header" role="tab" id="headingOne">
+                <div class="mb-0">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>" aria-expanded="false" aria-controls="collapse<%=i%>" class="collapsed">
+                        <i class="far fa-file-alt"></i>
+                        <h3><%=i + ". "%><%=programas.get(i).getTitulo()%></h3>
+                    </a>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </div>
+            </div>
 
+            <div id="collapse<%=i%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=i%>" aria-expanded="false" style="">
+                <div class="card-block">
+                    <%=programas.get(i).getDescripcion()%>
+                </div>
+            </div>
+        </div>
+        <%}%>
+    </div>
+</div>
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center">
@@ -286,16 +291,16 @@
                     
                     <!-- Footer Social Area -->
                     <div class="footer-social-area mt-30">
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
         </div>
 
 
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.centronelson.org/" target="_blank">Ivan, Jaime & Alejandro </a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados | <a href="https://www.centronelson.org/" target="_blank">Ivan, Jaime & Alejandro </a>
 
 
     </footer>
