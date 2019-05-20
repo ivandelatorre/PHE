@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Admin Site | Añadir Candidatos</title>
+	<title>Admin Site | Insertar evento</title>
 	<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
 	<meta name="author" content="Pike Web Development - https://www.pikephp.com">
 
@@ -40,7 +40,7 @@
 
 			<!-- LOGO -->
 			<div class="headerbar-left">
-				<a href="index.jsp" class="logo"> <span>Admin Site</span></a>
+				<a href="index.jsp" class="logo"> <span>Administracion</span></a>
 			</div>
 
 			<nav class="navbar-custom">
@@ -240,11 +240,12 @@
 							<ul class="list-unstyled">
 								<li><a href="busqueda-candidato.jsp">Candidatos</a></li>
 								<li><a href="busqueda-eventos.jsp">Eventos</a></li>
+								<li><a href="busqueda-voluntarios.jsp">Voluntarios</a></li>
 							</ul>
 						</li>
 
 						<li class="submenu">
-							<a href="#"><i class="material-icons">add</i> <span> Añadir </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="material-icons">add</i> <span> Insertar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="add-candidato.jsp">Candidato</a></li>
 								<li><a href="add-evento.jsp ">Evento</a></li>
@@ -255,7 +256,7 @@
 							<a href="#"><i class="material-icons">delete</i> <span> Eliminar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="borrar-candidato.jsp">Candidato</a></li>
-								<li><a href="añadir-evento.jsp ">Evento</a></li>
+								<li><a href="borrar-evento.jsp ">Evento</a></li>
 							</ul>
 						</li>
 
@@ -284,7 +285,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="breadcrumb-holder">
-								<h1 class="main-title float-left">Añadir Evento</h1>
+								<h1 class="main-title float-left">Insertar Evento</h1>
 								<ol class="breadcrumb float-right">
 									<li class="breadcrumb-item">Inicio</li>
 									<li class="breadcrumb-item active">Nuevo Evento</li>
@@ -329,15 +330,15 @@
 											<label for="inputState">Tipo</label>
 											<select id="inputState" name="tipo" class="form-control" required="">
 												<option selected>Nacional</option>
-												<option>Autonímica</option>
+												<option>Autonomica</option>
 												<option>Municipal</option>
 												<option>Europea</option>
 											</select>
 										</div><div class="form-group">
-											<label for="exampleFormControlTextarea3">Descripción del evento</label>
+											<label for="exampleFormControlTextarea3">Descripcion del evento</label>
 											<textarea class="form-control rounded-0" name="descripcion" id="exampleFormControlTextarea3" rows="3" required=""></textarea>
 										</div>
-										<button type="submit" class="btn btn-primary">Añadir</button>
+										<button type="submit" class="btn btn-primary">Insertar</button>
 									</form>
 
 								</div>

@@ -1,16 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<%@ page import="java.net.*" %>
+<%@ page import="java.io.*" %>
+
+<%@ page import="clases.*" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-es">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		
-	<%@ page import="clases.*" %>
-	<%@ page import="java.util.*" %>
-
 	<title>PHE | Admin Page</title>
-	<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-	<meta name="author" content="Pike Web Development - https://www.pikephp.com">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -40,184 +43,11 @@
 
 			<!-- LOGO -->
 			<div class="headerbar-left">
-				<a href="index.jsp" class="logo"><span>Admin Site</span></a>
+				<a href="index.jsp" class="logo"><span>Administracion</span></a>
 			</div>
 
-			<nav class="navbar-custom">
-
-				<ul class="list-inline float-right mb-0">
-
-					<li class="list-inline-item dropdown notif">
-						<a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-							<i class="fa fa-fw fa-question-circle"></i>
-						</a>
-						<div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-							<!-- item-->
-							<div class="dropdown-item noti-title">
-								<h5><small>Help and Support</small></h5>
-							</div>
-
-							<!-- item-->
-							<a target="_blank" href="" class="dropdown-item notify-item">
-								<p class="notify-details ml-0">
-									<b>Do you want custom development to integrate this theme?</b>
-									<span>Contact Us</span>
-								</p>
-							</a>
-
-							<!-- item-->
-							<a target="_blank" href="" class="dropdown-item notify-item">
-								<p class="notify-details ml-0">
-									<b>Do you want PHP version of the theme that save dozens of hours of work?</b>
-									<span>Try Pike Admin PRO</span>
-								</p>
-							</a>
-
-							<!-- All-->
-							<a title="Clcik to visit Pike Admin Website" target="_blank" href="" class="dropdown-item notify-item notify-all">
-								<i class="fa fa-link"></i> Visit Admin Website
-							</a>
-
-						</div>
-					</li>
-
-					<li class="list-inline-item dropdown notif">
-						<a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-							<i class="fa fa-fw fa-envelope-o"></i><span class="notif-bullet"></span>
-						</a>
-						<div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-							<!-- item-->
-							<div class="dropdown-item noti-title">
-								<h5><small><span class="label label-danger pull-xs-right">12</span>Contact Messages</small></h5>
-							</div>
-
-							<!-- item-->
-							<a href="#" class="dropdown-item notify-item">
-								<p class="notify-details ml-0">
-									<b>Jokn Doe</b>
-									<span>New message received</span>
-									<small class="text-muted">2 minutes ago</small>
-								</p>
-							</a>
-
-							<!-- item-->
-							<a href="#" class="dropdown-item notify-item">
-								<p class="notify-details ml-0">
-									<b>Michael Jackson</b>
-									<span>New message received</span>
-									<small class="text-muted">15 minutes ago</small>
-								</p>
-							</a>
-
-							<!-- item-->
-							<a href="#" class="dropdown-item notify-item">
-								<p class="notify-details ml-0">
-									<b>Foxy Johnes</b>
-									<span>New message received</span>
-									<small class="text-muted">Yesterday, 13:30</small>
-								</p>
-							</a>
-
-							<!-- All-->
-							<a href="#" class="dropdown-item notify-item notify-all">
-								View All
-							</a>
-
-						</div>
-					</li>
-					<%BDController controladorbd=new BDController();%>
-					<li class="list-inline-item dropdown notif">
-						<a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-							<i class="fa fa-fw fa-bell-o"></i><span class="notif-bullet"></span>
-						</a>
-						<div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg">
-							<!-- item-->
-							<div class="dropdown-item noti-title">
-								<h5><small><span class="label label-danger pull-xs-right">5</span>Allerts</small></h5>
-							</div>
-
-							<!-- item-->
-							<a href="#" class="dropdown-item notify-item">
-								<div class="notify-icon bg-faded">
-									<img src="assets/images/avatars/avatar2.png" alt="img" class="rounded-circle img-fluid">
-								</div>
-								<p class="notify-details">
-									<b>John Doe</b>
-									<span>User registration</span>
-									<small class="text-muted">3 minutes ago</small>
-								</p>
-							</a>
-
-							<!-- item-->
-							<a href="#" class="dropdown-item notify-item">
-								<div class="notify-icon bg-faded">
-									<img src="assets/images/avatars/avatar3.png" alt="img" class="rounded-circle img-fluid">
-								</div>
-								<p class="notify-details">
-									<b>Michael Cox</b>
-									<span>Task 2 completed</span>
-									<small class="text-muted">12 minutes ago</small>
-								</p>
-							</a>
-
-							<!-- item-->
-							<a href="#" class="dropdown-item notify-item">
-								<div class="notify-icon bg-faded">
-									<img src="assets/images/avatars/avatar4.png" alt="img" class="rounded-circle img-fluid">
-								</div>
-								<p class="notify-details">
-									<b>Michelle Dolores</b>
-									<span>New job completed</span>
-									<small class="text-muted">35 minutes ago</small>
-								</p>
-							</a>
-
-							<!-- All-->
-							<a href="#" class="dropdown-item notify-item notify-all">
-								View All Allerts
-							</a>
-
-						</div>
-					</li>
-
-					<li class="list-inline-item dropdown notif">
-						<a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-							<img src="assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
-						</a>
-						<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-							<!-- item-->
-							<div class="dropdown-item noti-title">
-								<h5 class="text-overflow"><small>Hello, admin</small> </h5>
-							</div>
-
-							<!-- item-->
-							<a href="pro-profile.jsp" class="dropdown-item notify-item">
-								<i class="fa fa-user"></i> <span>Profile</span>
-							</a>
-
-							<!-- item-->
-							<a href="#" class="dropdown-item notify-item">
-								<i class="fa fa-power-off"></i> <span>Logout</span>
-							</a>
-
-							<!-- item-->
-							<a target="_blank" href="" class="dropdown-item notify-item">
-								<i class="fa fa-external-link"></i> <span>Admin</span>
-							</a>
-						</div>
-					</li>
-
-				</ul>
-
-				<ul class="list-inline menu-left mb-0">
-					<li class="float-left">
-						<button class="button-menu-mobile open-left">
-							<i class="fa fa-fw fa-bars"></i>
-						</button>
-					</li>
-				</ul>
-
-			</nav>
+			<% BDController controladorbd=new BDController();%>
+			<nav class="navbar-custom"></nav>
 
 		</div>
 		<!-- End Navigation -->
@@ -241,11 +71,12 @@
 							<ul class="list-unstyled">
 								<li><a href="busqueda-candidato.jsp">Candidatos</a></li>
 								<li><a href="busqueda-eventos.jsp">Eventos</a></li>
+								<li><a href="busqueda-voluntarios.jsp">Voluntarios</a></li>
 							</ul>
 						</li>
 
 						<li class="submenu">
-							<a href="#"><i class="material-icons">add</i> <span> A�adir </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="material-icons">add</i> <span> Añadir </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="add-candidato.jsp">Candidato</a></li>
 								<li><a href="add-evento.jsp ">Evento</a></li>
@@ -259,8 +90,6 @@
 								<li><a href="borrar-evento.jsp ">Evento</a></li>
 							</ul>
 						</li>
-
-						
 
 					</ul>
 
@@ -298,6 +127,8 @@
 					<div class="row">
 					<% int candidaturas=controladorbd.calcularCandidaturas();
 					   int candidat=controladorbd.calcularCandidatos();
+					   int campanna=controladorbd.calcularCampanna();
+					   int eventos=controladorbd.calcularEventos();
 					%>
 						<div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
 							<div class="card-box noradius noborder bg-default">
@@ -311,9 +142,9 @@
 						<div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
 							<div class="card-box noradius noborder bg-warning">
 								<i class="fa fa-bar-chart float-right text-white"></i>
-								<h6 class="text-white text-uppercase m-b-20">Visitors</h6>
-								<h1 class="m-b-20 text-white counter">250</h1>
-								<span class="text-white">Bounce rate: 25%</span>
+								<h6 class="text-white text-uppercase m-b-20">Campañas</h6>
+								<h1 class="m-b-20 text-white counter"><%=campanna%></h1>
+								<span class="text-white"><%=campanna%> Nuevas Campañas</span>
 							</div>
 						</div>
 
@@ -327,23 +158,30 @@
 						</div>
 
 						<div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-							<div class="card-box noradius noborder bg-danger">
+							<div class="card-box noradius noborder" style="background-color: #ff6337">
 								<i class="fa fa-bell-o float-right text-white"></i>
-								<h6 class="text-white text-uppercase m-b-20">Alerts</h6>
-								<h1 class="m-b-20 text-white counter">58</h1>
-								<span class="text-white">5 New Alerts</span>
+								<h6 class="text-white text-uppercase m-b-20">Eventos</h6>
+								<h1 class="m-b-20 text-white counter"><%=eventos%></h1>
+								<span class="text-white"><%=eventos%> Eventos</span>
 							</div>
 						</div>
 					</div>
 					<!-- end row -->
 
-					<div class="row">
+					<div class="row" style="margin: auto">
 
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
 							<div class="card mb-3">
 								<div class="card-header">
-									<h3><i class="fa fa-users"></i> Staff details</h3>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non luctus metus. Vivamus fermentum ultricies orci sit amet sollicitudin.
+									<h3><i class="fa fa-users"></i> Todos los Candidatos</h3>
+									<% 
+									
+///----------------------------------------------------------------------------------------------------------------------------------------------
+//	������������������������RUTA TEMPORAL PROYECTO-------------------------------------------------------------------------------------------------
+									String filePath = application.getRealPath("/");
+									out.print(filePath);
+								
+%>
 								</div>
 
 								<div class="card-body">
@@ -351,8 +189,8 @@
 									<table id="example1" class="table table-bordered table-responsive-xl table-hover display">
 										<thead>
 											<tr>
-												<th>Name</th>
-												<th>Position</th>
+												<th>Nombre</th>
+												<th>Apellidos</th>
 												<th>Office</th>
 												<th>Age</th>
 												<th>Start date</th>
@@ -385,108 +223,6 @@
 								</div>
 							</div><!-- end card-->
 						</div>
-
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
-							<div class="card mb-3">
-								<div class="card-header">
-									<h3><i class="fa fa-envelope-o"></i> Latest messages</h3>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								</div>
-
-								<div class="card-body">
-
-									<div class="widget-messages nicescroll" style="height: 400px;">
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar2.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">John Doe</p>
-												<p class="message-item-msg">Hello. I want to buy your product</p>
-												<p class="message-item-date">11:50 PM</p>
-											</div>
-										</a>
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar5.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">Ashton Cox</p>
-												<p class="message-item-msg">Great job for this task</p>
-												<p class="message-item-date">14:25 PM</p>
-											</div>
-										</a>
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar6.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">Colleen Hurst</p>
-												<p class="message-item-msg">I have a new project for you</p>
-												<p class="message-item-date">13:20 PM</p>
-											</div>
-										</a>
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar10.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">Fiona Green</p>
-												<p class="message-item-msg">Nice to meet you</p>
-												<p class="message-item-date">15:45 PM</p>
-											</div>
-										</a>
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar2.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">Donna Snider</p>
-												<p class="message-item-msg">I have a new project for you</p>
-												<p class="message-item-date">15:45 AM</p>
-											</div>
-										</a>
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar5.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">Garrett Winters</p>
-												<p class="message-item-msg">I have a new project for you</p>
-												<p class="message-item-date">15:45 AM</p>
-											</div>
-										</a>
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar6.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">Herrod Chandler</p>
-												<p class="message-item-msg">Hello! I'm available for this job</p>
-												<p class="message-item-date">15:45 AM</p>
-											</div>
-										</a>
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar10.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">Jena Gaines</p>
-												<p class="message-item-msg">I have a new project for you</p>
-												<p class="message-item-date">15:45 AM</p>
-											</div>
-										</a>
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar2.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">Airi Satou</p>
-												<p class="message-item-msg">I have a new project for you</p>
-												<p class="message-item-date">15:45 AM</p>
-											</div>
-										</a>
-										<a href="#">
-											<div class="message-item">
-												<div class="message-user-img"><img src="assets/images/avatars/avatar10.png" class="avatar-circle" alt=""></div>
-												<p class="message-item-user">Brielle Williamson</p>
-												<p class="message-item-msg">I have a new project for you</p>
-												<p class="message-item-date">15:45 AM</p>
-											</div>
-										</a>
-									</div>
-
-								</div>
-								<div class="card-footer small text-muted">Updated today at 11:59 PM</div>
-							</div><!-- end card-->
-						</div>
-
-					</div>
-
-
-
 				</div>
 				<!-- END container-fluid -->
 

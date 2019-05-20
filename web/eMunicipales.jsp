@@ -31,10 +31,11 @@ pageEncoding="utf-8"%>
 <body>
 <%
     BDController controladorBD = new BDController();
-    ArrayList<Programa> programas = controladorBD.dame10primerosPuntosPrograma();
     String municipio = request.getParameter("municipio");
+    ArrayList<Programa> programas = controladorBD.damePuntosMunicipio(municipio);
     ArrayList<Candidato> candidatos = controladorBD.dameCandidatosPorMunicipio(municipio);
     Candidato candidatoCabeza = controladorBD.dameCabeza(municipio);
+    int cont = 0;
 %>
     <!-- Preloader -->
     <div id="preloader">
@@ -55,11 +56,9 @@ pageEncoding="utf-8"%>
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Hello World!</a></li>
-                                    <li><a href="#">Hello Universe!</a></li>
-                                    <li><a href="#">Hello Original!</a></li>
-                                    <li><a href="#">Hello Earth!</a></li>
-                                    <li><a href="#">Hello Colorlib!</a></li>
+                                    <li><a href="#">Por españa!</a></li>
+                                    <li><a href="#"><script>document.write(new Date().getDate() + " - " + new Date().getMonth() + " - " + new Date().getFullYear());</script> </a></li>
+                                    <li><a href="#">Elecciones 2019!</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -67,9 +66,9 @@ pageEncoding="utf-8"%>
                     <!-- Top Social Area -->
                     <div class="col-12 col-sm-4">
                         <div class="top-social-area">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -94,10 +93,7 @@ pageEncoding="utf-8"%>
                     <!-- Classy Menu -->
                     <nav class="classy-navbar justify-content-between">
 
-                        <!-- Subscribe btn -->
-                        <div class="subscribe-btn">
-                            <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#subsModal">Subscribirse</a>
-                        </div>
+
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -118,14 +114,14 @@ pageEncoding="utf-8"%>
                                     <li><a href="#">Elecciones</a>
                                         <ul class="dropdown">
                                             <li><a href="eleccionesNacionales.jsp">Nacionales</a></li>
-                                            <li><a href="eleccionesAutonomicas.jsp">Autonómicas</a></li>
+                                            <li><a href="eleccionesAutonomicas.jsp">Autonomicas</a></li>
                                             <li><a href="eleccionesMunicipales.jsp">Municipales</a></li>
                                             <li><a href="eleccionesEuropeas.jsp">Europeas</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="proximos-eventos.jsp">Próximos eventos</a></li>
+                                    <li><a href="proximosEventos.jsp">Proximos eventos</a></li>
                                     <li><a href="participa.jsp">Participa</a></li>
-                                    <li><a href="contact.html">Contacto</a></li>
+
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -154,54 +150,94 @@ pageEncoding="utf-8"%>
         </nav>
     </div>
     <div class="container mt-0">
-        <h1 class="text-center mt-5"><%=municipio%></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="site-heading text-center">
+                    <h2>Nuestro <span>Equipo</span></h2>
+                    <h4>Conoce a todos nuestros miembros</h4>
+                </div>
+            </div>
+        </div>
         <section id="team" class="team-area">
             <div class="container">
                 <div class="row team-items d-flex align-content-center justify-content-center">
                     <div class="col-md-4 single-item">
                         <div class="item">
+                            <p class="text-center font-weight-bold">Cabeza</p>
                             <div class="thumb">
-                                <img class="img-fluid" src="https://i.ibb.co/JC4skS0/team-animate.jpg" alt="Thumb">
+                                <img class="img-fluid" src="img/imagenesPoliticos/1.jpg" alt="Thumb">
                                 <div class="overlay">
                                     <h4><%=candidatoCabeza.getNombre()%></h4>
                                     <p>
-                                        Lorem Ipsum is simp ly dummy text of the printing and typesetting industry.
+                                        <%=candidatoCabeza.getDescripcion()%>
                                     </p>
+                                    <div class="social">
+                                        <ul>
+                                            <li class="twitter">
+                                                <a href="https://twitter.com/?lang=es"><i class="fab fa-twitter"></i></a>
+                                            </li>
+                                            <li class="instagram">
+                                                <a href="https://www.instagram.com/?hl=es"><i class="fab fa-instagram"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="info">
                             <h4><%=candidatoCabeza.getNombre()%></h4>
-                            <span>Ingeniero aeronáutico</span>
+                            <span><%=candidatoCabeza.getProvincia()%></span>
                         </div>
                     </div>
                 </div>
                 <div class="row team-items d-flex align-content-center justify-content-center">
                     <%for (int i = 0; i < candidatos.size(); i++){%>
                         <%if (candidatos.get(i).getCod() != candidatoCabeza.getCod()){%>
-                        <div class="col-md-4 single-item subCandidato" >
-                            <div class="item">
-                                <div class="thumb">
-                                    <img class="img-fluid" src="https://i.ibb.co/JC4skS0/team-animate.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <h5><%=candidatos.get(i).getNombre()%></h5>
-                                        <p>
-                                            Lorem Ipsum is simp ly dummy text of the printing and typesetting industry.
-                                        </p>
+                    <%cont++; if (cont <= 32 ){System.out.println(cont);}else{cont = 1;}%>
+                    <div class="col-md-4 single-item subCandidato">
+                        <div class="item">
+                            <div class="thumb">
+                                <img class="img-fluid" src="img/imagenesPoliticos/<%=cont%>.jpg" alt="Thumb">
+                                <div class="overlay">
+                                    <h4><%=candidatos.get(i).getNombre()%></h4>
+                                    <p>
+                                        <%=candidatos.get(i).getDescripcion()%>
+                                    </p>
+                                    <div class="social">
+                                        <ul>
+                                            <li class="twitter">
+                                                <a href="https://twitter.com/?lang=es"><i class="fab fa-twitter"></i></a>
+                                            </li>
+                                            <li class="instagram">
+                                                <a href="https://www.instagram.com/?hl=es"><i class="fab fa-instagram"></i></a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="info">
-                                <h5><%=candidatos.get(i).getNombre()%></h5>
-                                <span class="profesionCandidato">Ingeniero aeronáutico</span>
+                                    <span class="message">
+                                        <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                    </span>
+                                <h4><%=candidatos.get(i).getNombre()%></h4>
+                                <span><%=candidatos.get(i).getProvincia()%></span>
                             </div>
                         </div>
+                    </div>
                         <%}%>
                     <%}%>
                 </div>
             </div>
         </section>
-        <h1 class="text-center">Nuestras medidas</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="site-heading text-center">
+                    <h2>Nuestras <span>Medidas</span></h2>
+                    <h4>Conoce nuestras medidas</h4>
+                </div>
+            </div>
+        </div>
         <div class="container w-75">
             <div id="accordion" role="tablist" aria-multiselectable="true">
                 <%for (int i = 0; i < programas.size(); i++){%>
@@ -210,8 +246,7 @@ pageEncoding="utf-8"%>
                         <div class="mb-0">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>" aria-expanded="false" aria-controls="collapse<%=i%>" class="collapsed">
                                 <i class="far fa-file-alt"></i>
-                                <h3><%=programas.get(i).getCod_punto()%></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                                <h3><%=i + ". "%><%=programas.get(i).getTitulo()%></h3>
                             </a>
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </div>
@@ -219,7 +254,7 @@ pageEncoding="utf-8"%>
 
                     <div id="collapse<%=i%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=i%>" aria-expanded="false" style="">
                         <div class="card-block">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            <%=programas.get(i).getDescripcion()%>
                         </div>
                     </div>
                 </div>
@@ -258,16 +293,16 @@ pageEncoding="utf-8"%>
                     
                     <!-- Footer Social Area -->
                     <div class="footer-social-area mt-30">
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
         </div>
 
 
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.centronelson.org/" target="_blank">Ivan, Jaime & Alejandro </a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados | <a href="https://www.centronelson.org/" target="_blank">Ivan, Jaime & Alejandro </a>
 
 
     </footer>

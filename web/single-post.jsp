@@ -57,11 +57,9 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Hello World!</a></li>
-                                    <li><a href="#">Hello Universe!</a></li>
-                                    <li><a href="#">Hello Original!</a></li>
-                                    <li><a href="#">Hello Earth!</a></li>
-                                    <li><a href="#">Hello Colorlib!</a></li>
+                                    <li><a href="#">Por españa!</a></li>
+                                    <li><a href="#"><script>document.write(new Date().getDate() + " - " + new Date().getMonth() + " - " + new Date().getFullYear());</script> </a></li>
+                                    <li><a href="#">Elecciones 2019!</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -612,9 +610,9 @@
                     </div>
                     <!-- Footer Social Area -->
                     <div class="footer-social-area mt-30">
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>

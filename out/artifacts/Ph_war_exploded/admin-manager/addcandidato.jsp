@@ -1,18 +1,31 @@
 <!DOCTYPE html>
+<%@page import="clases.Candidatura"%>
 <%@page import="clases.Candidato"%>
 
 <%@page import="java.text.ParseException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 
 <%@page import="java.util.Date"%>
+<%@page import="java.util.Hashtable"%>
 <%@page import="java.util.*"%>
+<%@page import="org.eclipse.jdt.internal.compiler.ast.ForeachStatement"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+
+<%@page import="java.util.ArrayList"%>
 <%@page import="clases.BDController"%>
+<%@ page import="clases.*" %>
+<%@ page import="java.io.*,java.util.*, javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+<%@ page import="org.apache.commons.fileupload.*" %>
+<%@ page import="org.apache.commons.fileupload.disk.*" %>
+<%@ page import="org.apache.commons.fileupload.servlet.*" %>
+<%@ page import="org.apache.commons.io.output.*" %>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Admin Site | Añadir Candidatos</title>
+	<title>Admin Site | Insertar Candidatos</title>
 	<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
 	<meta name="author" content="Pike Web Development - https://www.pikephp.com">
 
@@ -48,7 +61,7 @@
 
 			<!-- LOGO -->
 			<div class="headerbar-left">
-				<a href="index.jsp" class="logo"> <span>Admin Site</span></a>
+				<a href="index.jsp" class="logo"> <span>Administracion</span></a>
 			</div>
 
 			<nav class="navbar-custom">
@@ -249,11 +262,12 @@
 							<ul class="list-unstyled">
 								<li><a href="busqueda-candidato.jsp">Candidatos</a></li>
 								<li><a href="busqueda-eventos.jsp">Eventos</a></li>
+								<li><a href="busqueda-voluntarios.jsp">Voluntarios</a></li>
 							</ul>
 						</li>
 
 						<li class="submenu">
-							<a href="#"><i class="material-icons">add</i> <span> Añadir </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="material-icons">add</i> <span> Insertar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="add-candidato.jsp">Candidato</a></li>
 								<li><a href="add-evento.jsp ">Evento</a></li>
@@ -264,7 +278,7 @@
 							<a href="#"><i class="material-icons">delete</i> <span> Eliminar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="borrar-candidato.jsp">Candidato</a></li>
-								<li><a href="add-evento.jsp ">Evento</a></li>
+								<li><a href="borrar-evento.jsp">Evento</a></li>
 							</ul>
 						</li>
 
@@ -293,7 +307,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="breadcrumb-holder">
-								<h1 class="main-title float-left">Añadir Candidatos</h1>
+								<h1 class="main-title float-left">Insertar Candidatos</h1>
 								<ol class="breadcrumb float-right">
 									<li class="breadcrumb-item">Home</li>
 									<li class="breadcrumb-item active">Forms</li>
@@ -307,10 +321,27 @@
 						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="margin: auto;">
 							<div class="card mb-3">
 								<div class="card-header">
-									<h3><i class="fa fa-check-square-o"></i> Nuevo Candidato</h3>
+									<h3><i class="fa fa-check-square-o"></i>El Nuevo Candidato Insertado:</h3>
 								</div>
 
 								<div class="card-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 									<%
@@ -325,19 +356,72 @@
 									String lugardenacimiento=request.getParameter("lugar");
 									String autonomia=request.getParameter("autonomia");
 									
-									String campana=request.getParameter("campana");
-									String cabeza=request.getParameter("cabeza");
+									Candidato candidato=new Candidato(nombre,apellido,fecha,lugardenacimiento,ciudad,provincia,autonomia,descripcion);
+									controladorbd.insertarCandidato(candidato);
+									
+									int campana=Integer.parseInt(request.getParameter("campana"));
+
+
+
+									String cabeza="";
+									out.print(cabeza);
+									if(request.getParameterValues("cabeza")!=null){
+										cabeza="si";
+									}else{
+										cabeza="no";
+									}
 									int posicion=Integer.parseInt(request.getParameter("posicion"));
-// 									 Candidato candidato=new Candidato(nombre,apellido,fecha,provincia,ciudad,campana,descripcion);
-// 									controladorbd.insertarCandidato(candidato);
-									
-// 									Candidato candidato=new Candidato(controladorbd.calcularCod_candidato(),nombre,apellido, SimpleDateFormat.parse(fecha),provincia,ciudad,codigopostal,campana,posicion);
-// 									controladorbd.insertarCandidato(candidato);
+									Candidatura candidatu=new Candidatura(cod,campana,cabeza,posicion);
+									controladorbd.insertarCandidatura(candidatu);
+									ArrayList<Candidato> candidatos=controladorbd.dameCandidato(cod);
+
 									%>
-<p><%=nombre %></p>
 
 
-									
+
+									<div class="table-responsive">
+										<table id="example1" class="table table-bordered table-hover display">
+											<thead>
+												<tr>
+													<th>Nombre</th>
+													<th>Apellidos</th>
+													<th>Municipio</th>
+													<th>Provincia</th>
+													<th>Fecha nacimiento</th>
+													<th>Lugar nacimiento</th>
+												</tr>
+											</thead>
+											<tbody>
+
+											<tr>
+													<th><%=candidato.getNombre()%></th>
+													<th><%=candidato.getApellidos()%></th>
+													<th><%=candidato.getMunicipio() %></th>
+													<th><%=candidato.getProvincia()%></th>
+													<th><%=candidato.getFecha_nac() %></th>
+													<th><%=candidato.getLugar_nac()%></th>
+												</tr>
+
+												
+											</tbody>
+										</table>
+									</div>
+
+									<form action="foto.jsp" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+											<label>AÃ±adir Imagen para el candidato creado</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+												<input type="submit" value="Asignar Foto"></input>
+												</div>
+												<div class="custom-file" style="max-width: 300px;">
+													<input type="file" name="file" value="<%=cod%>" class="custom-file-input" required="" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+													<label class="custom-file-label" for="inputGroupFile01">Seleccionar Imagen</label>
+												</div>
+											</div>
+										</div>
+										
+										</form>
 								</div>
 							</div><!-- end card-->
 						</div>

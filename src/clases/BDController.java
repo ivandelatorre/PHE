@@ -2,6 +2,7 @@ package clases;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class BDController {
     private Connection miConexion;
@@ -15,6 +16,9 @@ public class BDController {
     private PreparedStatement consultaCandidatosPorMunicipio;
     private PreparedStatement consultaCandidatosPorNac;
     private PreparedStatement consultaCandidatosPorEur;
+    private PreparedStatement consulta5puntos;
+    private PreparedStatement consultaPuntosMunicipios;
+    private PreparedStatement consulta10puntos;
 
 
     public BDController() {
@@ -42,6 +46,9 @@ public class BDController {
         String sqlconsultaCandiPorMuni = "select * from candidatos inner join candidaturas c on candidatos.cod_candidato = c.cod_candidato inner join campanna c2 on c.cod_campaña = c2.cod_campanna where c2.titulo = 'Municipal' and c2.ambito = ?";
         String sqlconsultaCandiNac = "select * from candidatos inner join candidaturas c on candidatos.cod_candidato = c.cod_candidato inner join campanna c2 on c.cod_campaña = c2.cod_campanna where c2.titulo = 'Nacional'";
         String sqlconsultaCandiEur = "select * from candidatos inner join candidaturas c on candidatos.cod_candidato = c.cod_candidato inner join campanna c2 on c.cod_campaña = c2.cod_campanna where c2.titulo = 'Europa'";
+        String sqlconsulta5puntos = "select * from programa where cod_campanna in (select cod_campanna from campanna where ambito = ?) limit 5";
+        String sqlconsultapuntosmunicipios = "select * from programa where cod_campanna in (select cod_campanna from campanna where ambito = ?)";
+        String sqlconsulta10puntos = "select * from programa where cod_campanna in (select cod_campanna from campanna where titulo = ?) limit 10";
 
         try {
             this.consultaCabeza = miConexion.prepareStatement(sqlconsultacabeza);
@@ -49,6 +56,9 @@ public class BDController {
             this.consultaCandidatosPorMunicipio = miConexion.prepareStatement(sqlconsultaCandiPorMuni);
             this.consultaCandidatosPorNac = miConexion.prepareStatement(sqlconsultaCandiNac);
             this.consultaCandidatosPorEur = miConexion.prepareStatement(sqlconsultaCandiEur);
+            this.consulta5puntos = miConexion.prepareStatement(sqlconsulta5puntos);
+            this.consultaPuntosMunicipios = miConexion.prepareStatement(sqlconsultapuntosmunicipios);
+            this.consulta10puntos = miConexion.prepareStatement(sqlconsulta10puntos);
         } catch (SQLException e) {
 
             e.printStackTrace();
@@ -56,6 +66,53 @@ public class BDController {
 
     }
 
+    public Hashtable<String,Candidato> dameCandidat(int codigo) {
+        Hashtable<String,Candidato> candidatos = new Hashtable<String,Candidato>();
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+            ResultSet rs = miStatement.executeQuery("SELECT * FROM candidatos where cod_candidato="+codigo);
+
+            while (rs.next()) {
+                Candidato cand=new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                candidatos.put("1",cand);
+            }
+            miStatement.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error en dameCandidat******************** de BDController " + e.getMessage());
+        }
+        return candidatos;
+    }
+
+
+    public ArrayList<Voluntario> dameVoluntarios() {
+        ArrayList<Voluntario> voluntarios = new ArrayList<Voluntario>();
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+            ResultSet rs = miStatement.executeQuery("SELECT cod_voluntario,nombre,apellidos,fecha_nac,email,telefono FROM VOLUNTARIOS");
+
+
+
+            while (rs.next()) {
+                voluntarios.add(new Voluntario(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6)));
+
+                System.out.println(voluntarios.get(0).getNombre() + "--NOMBRE--");
+            }
+            miStatement.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error en dameVoluntarios de BDController " + e.getMessage());
+        }
+        return voluntarios;
+    }
 
     //Candidatos
     public int calcularCod_candidato() {
@@ -78,33 +135,69 @@ public class BDController {
         return cod_candidato;
     }
 
-//
-//    public void insertarCandidatura(Candidatura candidatu) {
-//        try {
-//            Statement miStatement = this.miConexion.createStatement();
-//            String sql = "INSERT INTO candidaturas VALUES ('" +candidatu.getCod_candidato() + "', '" + candidatu.getCod_campanna() + "', '"
-//                    + candidatu.getCabeza_lista()+ "', '"
-//                    +candidatu.getPosicion() +"')";
-//            miStatement.executeUpdate(sql);
-//            miStatement.close();
-//
-//        } catch (SQLException e) {
-//            // TODO Auto-generated catch block
-//            System.out.println("Error en insertarCandidatura del BDController" + e.getMessage());
-//        }
-//    }
 
+    public void insertarCandidatura(Candidatura candidatu) {
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+            String sql = "INSERT INTO candidaturas VALUES ('" +candidatu.getCod_candidato() + "', '" + candidatu.getCod_campanna() + "', '"
+                    + candidatu.getCabeza_lista()+ "', '"
+                    +candidatu.getPosicion() +"')";
+            miStatement.executeUpdate(sql);
+            miStatement.close();
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Error en insertarCandidatura del BDController" + e.getMessage());
+        }
+    }
+
+    public ArrayList<Candidato> dameCandidato(int codigo) {
+        ArrayList<Candidato> candidatos = new ArrayList<Candidato>();
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+            ResultSet rs = miStatement.executeQuery("SELECT * FROM candidatos where cod_candidato="+codigo);
+
+            while (rs.next()) {
+                candidatos.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+            }
+            miStatement.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error en dameCandidato******************** de BDController " + e.getMessage());
+        }
+        return candidatos;
+    }
+
+    public ArrayList<Evento> dameEvento(int codigo) {
+        ArrayList<Evento> eventos = new ArrayList<Evento>();
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+            ResultSet rs = miStatement.executeQuery("SELECT * FROM eventos where cod_evento="+codigo);
+            while (rs.next()) {
+                eventos.add(new Evento(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8)));
+            }
+            miStatement.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error en dameEvento de BDController " + e.getMessage());
+        }
+        return eventos;
+    }
 
     public void insertarCandidato(Candidato candidato) {
         try {
             Statement miStatement = this.miConexion.createStatement();
-            String sql = "INSERT INTO candidatos VALUES ('" +candidato.getCod() + "', '" + candidato.getNombre() + "', '"
+            String sql = "INSERT INTO candidatos (nombre, apellidos, fecha_nac, lugar_nac, municipio, provincia, autonomia, descripcion)  VALUES ('"
+                    + candidato.getNombre() + "', '"
                     + candidato.getApellidos()  + "', '"
                     + candidato.getFecha_nac() + "', '"
                     + candidato.getLugar_nac() + "', '"
                     + candidato.getMunicipio()  + "', '"
                     + candidato.getProvincia() + "', '"
-                    + candidato.getAutonomia()+"')";
+                    + candidato.getAutonomia() + "', '"
+                     + candidato.getDescripcion()+"')";
             miStatement.executeUpdate(sql);
             miStatement.close();
 
@@ -171,6 +264,46 @@ public class BDController {
 
         } catch (SQLException e) {
             System.out.println("Error en calcularCandidatos del BDController" + e.getMessage());
+        }
+        return numerocan;
+    }
+
+    public int calcularCampanna() {
+        int numerocan = 1;
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+
+            ResultSet rs = miStatement.executeQuery("SELECT count(cod_campanna) FROM campanna");
+
+            if (rs.first() == true) {
+                numerocan = rs.getInt(1);
+
+            }
+            miStatement.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error en calcularCampanna del BDController" + e.getMessage());
+        }
+        return numerocan;
+    }
+
+    public int calcularEventos() {
+        int numerocan = 1;
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+
+            ResultSet rs = miStatement.executeQuery("SELECT count(cod_evento) FROM eventos");
+
+            if (rs.first() == true) {
+                numerocan = rs.getInt(1);
+
+            }
+            miStatement.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error en calcularEvento del BDController" + e.getMessage());
         }
         return numerocan;
     }
@@ -299,21 +432,32 @@ public class BDController {
         return existe;
     }
 
+    public void insertarAsistentes(int codA, int codC) {
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+            String sql = "INSERT INTO asistentes VALUES ("
+                    + codA 	+ ", "
+                    + codC + ")";
+            miStatement.executeUpdate(sql);
+            miStatement.close();
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Error en insertarAsistentes del BDController" + e.getMessage());
+        }
+    }
 
     public void insertarVoluntario(Voluntario voluntario) {
         try {
             Statement miStatement = this.miConexion.createStatement();
-            String sql = "INSERT INTO voluntarios VALUES ('"
-                    + voluntario.getCod()+ "', '"
+            String sql = "INSERT INTO voluntarios(nombre, apellidos, fecha_nac, email, telefono) VALUES ('"
                     + voluntario.getNombre() 	+ "', '"
                     + voluntario.getApellidos()+ "', '"
                     + voluntario.getFecha_nac()  + "', '"
                     + voluntario.getEmail() + "', '"
-                    + voluntario.getTelefono()  + "', '"
-//															+ voluntario.get  + "', '"
-//																+ noticia.getCod_campanna()
-                    +"')";
-            miStatement.executeUpdate(sql);
+                    + voluntario.getTelefono()  + "')";
+            System.out.println(sql);
+            miStatement.execute(sql);
             miStatement.close();
 
         } catch (SQLException e) {
@@ -321,6 +465,22 @@ public class BDController {
             System.out.println("Error en insertarVoluntario del BDController" + e.getMessage());
         }
     }
+
+    public void insertarVoluntariados(int codA, int codC) {
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+            String sql = "INSERT INTO voluntariados VALUES ("
+                    + codA 	+ ", "
+                    + codC + ")";
+            miStatement.executeUpdate(sql);
+            miStatement.close();
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Error en insertarVoluntariados del BDController" + e.getMessage());
+        }
+    }
+
     public void borrarVoluntario(int cod_voluntario) {
 
         try {
@@ -386,25 +546,23 @@ public class BDController {
         }
     }
 
-
-
-
-    public ArrayList<Programa> dame10programasEuropa() {
-        ArrayList<Programa> programas = new ArrayList<Programa>();
+    public int dameIdUltimoVoluntario() {
+        int id = -1;
         try {
             Statement miStatement = this.miConexion.createStatement();
-            ResultSet rs = miStatement.executeQuery("SELECT * FROM programa limit 10");
+            ResultSet rs = miStatement.executeQuery("SELECT cod_voluntario FROM voluntarios order by cod_voluntario desc limit 1");
             while (rs.next()) {
-                programas.add(new Programa(rs.getInt(1),rs.getString(2) ,rs.getInt(3)));
+                id = rs.getInt(1);
             }
             miStatement.close();
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Error en dame10programasEuropa de BDController " + e.getMessage());
+            System.out.println("Error en dameIdUltimoVoluntario de BDController " + e.getMessage());
         }
-        return programas;
+        return id;
     }
+
     public ArrayList<Evento> dameProximosEventosAmbito() {
         ArrayList<Evento> eventos = new ArrayList<Evento>();
         try {
@@ -420,21 +578,6 @@ public class BDController {
         }
         return eventos;
     }
-//    public ArrayList<Evento> dameProximosEventosAmbito() {
-//        ArrayList<Evento> eventos = new ArrayList<Evento>();
-//        try {
-//            Statement miStatement = this.miConexion.createStatement();
-//            ResultSet rs = miStatement.executeQuery("SELECT * FROM eventos limit 10");
-//            while (rs.next()) {
-//                eventos.add(new Evento(rs.getInt(1),rs.getString(2) ,rs.getString(3) ,rs.getString(4),rs.getTime(5),rs.getString(6) , rs.getInt(7),rs.getString(8),rs.getString(9)));
-//            }
-//            miStatement.close();
-//            rs.close();
-//        } catch (SQLException e) {
-//            System.out.println("Error en dameProximosEventosAmbito() de BDController " + e.getMessage());
-//        }
-//        return eventos;
-//    }
 
     //Comprobamos si existe Candidato
     public Boolean existeCandidato(int cod_candidato) {
@@ -510,7 +653,6 @@ public class BDController {
         try {
             Statement miStatement = this.miConexion.createStatement();
             ResultSet rs = miStatement.executeQuery("SELECT * FROM candidatos order by cod_candidato asc");
-
             while (rs.next()) {
                 candidatos.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
             }
@@ -529,8 +671,7 @@ public class BDController {
             consultaCandidatosPorComunidad.setString(1, comunidad);
             ResultSet rs = consultaCandidatosPorComunidad.executeQuery();
             while (rs.next()) {
-                System.out.println("");
-                candidatosComunidad.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                candidatosComunidad.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
             }
             miStatement.close();
             rs.close();
@@ -549,8 +690,7 @@ public class BDController {
             consultaCandidatosPorMunicipio.setString(1, municipio);
             ResultSet rs = consultaCandidatosPorMunicipio.executeQuery();
             while (rs.next()) {
-                System.out.println("");
-                candidatosMunicipios.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                candidatosMunicipios.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
             }
             miStatement.close();
             rs.close();
@@ -567,8 +707,7 @@ public class BDController {
             Statement miStatement = this.miConexion.createStatement();
             ResultSet rs = consultaCandidatosPorEur.executeQuery();
             while (rs.next()) {
-                System.out.println("");
-                candidatosEuropa.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                candidatosEuropa.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
             }
             miStatement.close();
             rs.close();
@@ -585,8 +724,7 @@ public class BDController {
             Statement miStatement = this.miConexion.createStatement();
             ResultSet rs = consultaCandidatosPorNac.executeQuery();
             while (rs.next()) {
-                System.out.println("nacionales");
-                candidatosNacionales.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                candidatosNacionales.add(new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
             }
             miStatement.close();
             rs.close();
@@ -606,8 +744,8 @@ public class BDController {
             consultaCabeza.setString(1, comunidad);
             ResultSet rs = consultaCabeza.executeQuery();
             while (rs.next()) {
-                candidato = new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
-                System.out.println("CABEZA: " + candidato.getNombre());
+                candidato = new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+
             }
             System.out.println(candidato.getAutonomia());
             miStatement.close();
@@ -626,7 +764,7 @@ public class BDController {
             Statement miStatement = this.miConexion.createStatement();
             ResultSet rs = miStatement.executeQuery("select * from candidatos inner join candidaturas c on candidatos.cod_candidato = c.cod_candidato inner join campanna c2 on c.cod_campaña = c2.cod_campanna where c.cabeza_lista = 'si' and c2.titulo = 'Nacional'");
             while (rs.next()) {
-                candidato = new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+                candidato = new Candidato(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9));
             }
             miStatement.close();
             rs.close();
@@ -745,7 +883,6 @@ public class BDController {
             Statement miStatement = this.miConexion.createStatement();
             ResultSet rs = miStatement.executeQuery("SELECT * FROM eventos order by cod_evento desc limit 5");
             while (rs.next()) {
-                System.out.println("");
                 eventos.add(new Evento(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8)));
             }
             miStatement.close();
@@ -756,18 +893,54 @@ public class BDController {
         return eventos;
     }
 
-    public ArrayList<Programa> dame10primerosPuntosPrograma() {
+    public ArrayList<Programa> dame10primerosPuntosPrograma(String ambito) {
         ArrayList<Programa> programas = new ArrayList<Programa>();
         try {
             Statement miStatement = this.miConexion.createStatement();
-            ResultSet rs = miStatement.executeQuery("select * from programa where cod_campanna in (select cod_campanna from campanna where titulo = 'nacional') limit 10");
+            consulta10puntos.setString(1, ambito);
+            ResultSet rs = consulta10puntos.executeQuery();
             while (rs.next()) {
-                programas.add(new Programa(rs.getInt(1),rs.getString(2),rs.getInt(3)));
+                programas.add(new Programa(rs.getInt(1),rs.getString(2),rs.getInt(3), rs.getString(4)));
             }
             miStatement.close();
             rs.close();
         } catch (SQLException e) {
             System.out.println("Error en dame10primerosPuntosPrograma de BDController " + e.getMessage());
+        }
+        return programas;
+    }
+
+    public ArrayList<Programa> dame5primerosPuntosPrograma(String comunidad) {
+        ArrayList<Programa> programas = new ArrayList<Programa>();
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+
+            consulta5puntos.setString(1, comunidad);
+            ResultSet rs = consulta5puntos.executeQuery();
+            while (rs.next()) {
+                programas.add(new Programa(rs.getInt(1),rs.getString(2),rs.getInt(3), rs.getString(4)));
+            }
+            miStatement.close();
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error en dame5primerosPuntosPrograma de BDController " + e.getMessage());
+        }
+        return programas;
+    }
+
+    public ArrayList<Programa> damePuntosMunicipio(String municipio) {
+        ArrayList<Programa> programas = new ArrayList<Programa>();
+        try {
+            Statement miStatement = this.miConexion.createStatement();
+            consultaPuntosMunicipios.setString(1, municipio);
+            ResultSet rs = consultaPuntosMunicipios.executeQuery();
+            while (rs.next()) {
+                programas.add(new Programa(rs.getInt(1),rs.getString(2),rs.getInt(3), rs.getString(4)));
+            }
+            miStatement.close();
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error en dame5primerosPuntosPrograma de BDController " + e.getMessage());
         }
         return programas;
     }

@@ -1,69 +1,44 @@
 package clases;
 
-import java.sql.Date;
-
 public class Voluntario extends Persona {
-    private int cod_voluntario;
-    private String nombre;
-    private String apellidos;
-    private String fecha_nac;
     private String email;
     private String telefono;
     private boolean autoriza_com;
     private boolean autoriza_gdpd;
 
-
-    public Voluntario(int cod, String nombre, String apellidos, String fecha_nac) {
-		super(cod, nombre, apellidos, fecha_nac);
-	}
-
-
-	public Voluntario(int cod, String nombre, String apellidos, String fecha_nac, int cod_voluntario, String nombre2,
-			String apellidos2, String fecha_nac2, String email, String telefono, boolean autoriza_com,
-			boolean autoriza_gdpd) {
-		super(cod, nombre, apellidos, fecha_nac);
-		this.cod_voluntario = cod_voluntario;
-		nombre = nombre2;
-		apellidos = apellidos2;
-		fecha_nac = fecha_nac2;
-		this.email = email;
-		this.telefono = telefono;
-		this.autoriza_com = autoriza_com;
-		this.autoriza_gdpd = autoriza_gdpd;
-	}
-
-	
-
-    public int getCod_voluntario() {
-        return cod_voluntario;
+    public Voluntario(String email, String telefono, boolean autoriza_com, boolean autoriza_gdpd) {
+        this.email = email;
+        this.telefono = telefono;
+        this.autoriza_com = autoriza_com;
+        this.autoriza_gdpd = autoriza_gdpd;
     }
 
-    public void setCod_voluntario(int cod_voluntario) {
-        this.cod_voluntario = cod_voluntario;
+    public Voluntario(String nombre, String apellidos, String fecha_nac, String email, String telefono, boolean autoriza_com, boolean autoriza_gdpd) {
+        super(nombre, apellidos, fecha_nac);
+        this.email = email;
+        this.telefono = telefono;
+        this.autoriza_com = autoriza_com;
+        this.autoriza_gdpd = autoriza_gdpd;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Voluntario(int cod, String nombre, String apellidos, String fecha_nac, String email, String telefono, boolean autoriza_com, boolean autoriza_gdpd) {
+        super(cod, nombre, apellidos, fecha_nac);
+        this.email = email;
+        this.telefono = telefono;
+        this.autoriza_com = autoriza_com;
+        this.autoriza_gdpd = autoriza_gdpd;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public Voluntario(int cod, String nombre, String apellidos, String fecha_nac, String email, String telefono) {
+        super(cod, nombre, apellidos, fecha_nac);
+        this.email = email;
+        this.telefono = telefono;
     }
 
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getFecha_nac() {
-        return fecha_nac;
-    }
-
-    public void setFecha_nac(String fecha_nac) {
-        this.fecha_nac = fecha_nac;
+    public Voluntario(String nombre, String apellidos, String fecha_nac, String email, String telefono) {
+        super(nombre, apellidos, fecha_nac);
+        this.email = email;
+        this.telefono = telefono;
     }
 
     public String getEmail() {

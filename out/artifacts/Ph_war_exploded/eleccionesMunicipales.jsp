@@ -4,7 +4,7 @@ pageEncoding="utf-8"%>
 <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-es">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@ pageEncoding="utf-8"%>
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>PHE | Partido Humano Español</title>
+    <title>PHE | Elecciones Municipales</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -30,8 +30,6 @@ pageEncoding="utf-8"%>
 <body>
 <%
     BDController controladorBD = new BDController();
-    ArrayList<Programa> programas = controladorBD.dame10primerosPuntosPrograma();
-    ArrayList<Candidato> candidatos = controladorBD.dameCandidatos();
 %>
     <!-- Preloader -->
     <div id="preloader">
@@ -52,11 +50,9 @@ pageEncoding="utf-8"%>
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Hello World!</a></li>
-                                    <li><a href="#">Hello Universe!</a></li>
-                                    <li><a href="#">Hello Original!</a></li>
-                                    <li><a href="#">Hello Earth!</a></li>
-                                    <li><a href="#">Hello Colorlib!</a></li>
+                                    <li><a href="#">Por españa!</a></li>
+                                    <li><a href="#"><script>document.write(new Date().getDate() + " - " + new Date().getMonth() + " - " + new Date().getFullYear());</script> </a></li>
+                                    <li><a href="#">Elecciones 2019!</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -64,9 +60,9 @@ pageEncoding="utf-8"%>
                     <!-- Top Social Area -->
                     <div class="col-12 col-sm-4">
                         <div class="top-social-area">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -91,10 +87,7 @@ pageEncoding="utf-8"%>
                     <!-- Classy Menu -->
                     <nav class="classy-navbar justify-content-between">
 
-                        <!-- Subscribe btn -->
-                        <div class="subscribe-btn">
-                            <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#subsModal">Subscribirse</a>
-                        </div>
+
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -112,17 +105,17 @@ pageEncoding="utf-8"%>
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index.jsp">Inicio</a></li>
-                                    <li><a href="#">Elecciones</a>
+                                    <li><a>Elecciones</a>
                                         <ul class="dropdown">
                                             <li><a href="eleccionesNacionales.jsp">Nacionales</a></li>
-                                            <li><a href="eleccionesAutonomicas.jsp">Autonómicas</a></li>
-                                            <li><a href="eleccionesMunicipales.jsp">Municipales</a></li>
+                                            <li><a href="eleccionesAutonomicas.jsp">Autonomicas</a></li>
+                                            <li><a>Municipales</a></li>
                                             <li><a href="eleccionesEuropeas.jsp">Europeas</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="proximos-eventos.jsp">Próximos eventos</a></li>
+                                    <li><a href="proximosEventos.jsp">Proximos eventos</a></li>
                                     <li><a href="participa.jsp">Participa</a></li>
-                                    <li><a href="contact.html">Contacto</a></li>
+
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -145,7 +138,7 @@ pageEncoding="utf-8"%>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.jsp">Inicio</a></li>
-                <li class="breadcrumb-item">Elecciones municipales</li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">Elecciones municipales</a></li>
             </ol>
         </nav>
     </div>
@@ -161,7 +154,7 @@ pageEncoding="utf-8"%>
             <a href="eMunicipales.jsp?municipio=mostoles"><div class="card cardComunidad">
                 <img class="card-img-top imagenComunidad" src="img/municipios/mostoles.png" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Móstoles</h5>
+                    <h5 class="card-title text-center">Mostoles</h5>
                 </div>
             </div></a>
             <a href="eMunicipales.jsp?municipio=granada"><div class="card cardComunidad">
@@ -209,16 +202,16 @@ pageEncoding="utf-8"%>
                     
                     <!-- Footer Social Area -->
                     <div class="footer-social-area mt-30">
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
         </div>
 
 
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.centronelson.org/" target="_blank">Ivan, Jaime & Alejandro </a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados | <a href="https://www.centronelson.org/" target="_blank">Ivan, Jaime & Alejandro </a>
 
 
     </footer>

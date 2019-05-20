@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Admin Site | Añadir Candidatos</title>
+	<title>Admin Site | Insertar Candidatos</title>
 	<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
 	<meta name="author" content="Pike Web Development - https://www.pikephp.com">
 
@@ -43,7 +43,7 @@
 
 			<!-- LOGO -->
 			<div class="headerbar-left">
-				<a href="index.jsp" class="logo"> <span>Admin Site</span></a>
+				<a href="index.jsp" class="logo"> <span>Administracion</span></a>
 			</div>
 
 			<nav class="navbar-custom">
@@ -244,11 +244,12 @@
 							<ul class="list-unstyled">
 								<li><a href="busqueda-candidato.jsp">Candidatos</a></li>
 								<li><a href="busqueda-eventos.jsp">Eventos</a></li>
+								<li><a href="busqueda-voluntarios.jsp">Voluntarios</a></li>
 							</ul>
 						</li>
 
 						<li class="submenu">
-							<a href="#"><i class="material-icons">add</i> <span> Añadir </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="material-icons">add</i> <span> Insertar </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="add-candidato.jsp">Candidato</a></li>
 								<li><a href="add-evento.jsp ">Evento</a></li>
@@ -311,11 +312,14 @@
 												ArrayList<Candidato> candidatos=controladorbd.dameCandidatos();
 												for(Candidato cam: candidatos){
 													
-												
+													String filePath = application.getRealPath("/");
+													
 											%>
 												<li class="input-option" data-value="  " style="border-color:#5c9cd8;">
-													<img src="images/  .png" alt="" width="20" />
-													<input type="hidden" class="option" name="codigo" value="<%=cam.getCod() %>" ><%=cam.getNombre() %></input>
+												
+													<img src="assets/images/candidatos/<%=cam.getCod() %>.png" alt="" width="20" />
+<%-- 													<img src="<%=filePath%>admin-manager\assets\images\candidatos\<%=cam.getCod() %>.png" alt="" width="20" /> --%>
+													<input type="hidden" class="option" name="codigo" value="<%=cam.getCod() %>" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=cam.getNombre() %></input>
 													
 												</li>
 												
